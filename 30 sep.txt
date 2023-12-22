@@ -1,0 +1,284 @@
+python
+
+ascii values
+A--->Z(65---->90)
+a--->z(97---->122)
+*to convert from integer to character we use chr in python.
+*to convert from characte to integer we use ord in python.
+*power in python is represented as **
+*starting value should be greater than ending value,it prints the value.
+*starting value should be less than ending value,it doesnot prints the value.
+*in python there is no do-while,only while and for will be there.
+* there is no pointer(*) in java and python.
+*ZeroDivisionError,TypeError,ValueError,IndentationError,SyntaxError,RuntimeError,ReferenceError,IndexError,AttributeError,KeyError are some of the types of errors.
+*function calling itself either directly or indirectly is called starting a recursion.
+*stopping recursion is represented by return statement in python.
+
+ oopc(java)
+
+*class consists of objects.
+*object consists of data and method.
+*method is the way of using the data. 
+*binding the data and methods in class is called encapsulation.
+*data can be accessed only with help of objects for the purpose of security.
+*we can call or get an output there are two ways:
+1.object_name.class()
+2.method_name.class()
+*constructor is represented as def __int__(self):
+*if variable is linked with method it is called static.
+*if variable is not linked with methos is called non-static.
+*self keyword is used for linking.
+*self holds the object.(ex:a.y (or) self.y are same)
+*we can't use data without object
+*we can use object without methods.
+*in linked list in c language we store address,and in python object is stored.
+------------------------------------------------------------------------------------------
+:::::>add convert to alphabet in python
+
+a=input()
+b=int(input())
+print(chr(ord(a)+b))
+------------------------------------------------------------------------------------------
+:::::>ascii value
+
+a=input()
+print(ord(a))
+-----------------------------------------------------------------------------------------
+:::::>backtracking
+
+def cse(x):
+    if(x==0):
+        return 0;
+    print(x)
+    cse(x-1)
+    print(x)
+cse(4)
+----------------------------------------------------------------------------------------
+:::::>backtracking example 1
+
+def cse(x):
+    if(x==0):
+        return 0
+    return x+cse(x-1)
+print(cse(4))
+----------------------------------------------------------------------------------------
+:::::>backtracking example2
+
+def cse(x):
+    if(x==0):
+        return 0
+    print(x)
+    print(cse(x-1))
+    print(x)
+    return 0
+cse(4)
+---------------------------------------------------------------------------------------
+:::::>binary addition
+
+a=4
+b=2
+a=a+1
+b=b-2
+c=(a)^(b+1)
+print(c)
+--------------------------------------------------------------------------------------
+:::::>constructor
+
+class cse:
+    x=10
+    def __init__(self):
+        self.y=30
+    def qwer(self):
+        print("hlo")
+a=cse()
+a.qwer()
+print(cse.x,a.y)
+----------------------------------------------------------------------------------------
+:::::>continuation of alphabet by adding
+
+a=input()
+b=int(input())
+if(ord(a)+b>122):
+   print(chr((ord(a)+b)-26))
+else:
+   print(chr(ord(a)+b))
+-----------------------------------------------------------------------------------------
+:::::>diamond star
+
+a=int(input())
+for i in range(a):
+   print(" "*(a-i) + "* " *(i+1))
+for i in range(a):
+    print(" "*(i+1) + "* " *(a-i))
+-----------------------------------------------------------------------------------------
+:::::>factorial
+
+def cse(x):
+    if(x==0):
+        return 1
+    return x * cse(x-1)
+print(cse(5))
+-----------------------------------------------------------------------------------------
+:::::>fibanocci
+
+def cse(x):
+    if(x==1):
+        return 1
+    if(x==2):
+        return 1
+    return cse(x-1)+cse(x-2)
+for i in range(1,11):
+    print(cse(i),end=" ")
+-----------------------------------------------------------------------------------------
+:::::>forloop
+
+a=4
+for i in range(7,2,-1):
+    print(i)
+-----------------------------------------------------------------------------------------
+:::::>functions
+
+def cse():
+     print("hii")
+def ece(x,y):
+    print("hlo",x,y)
+ece(5,6)
+cse()
+----------------------------------------------------------------------------------------
+:::::>integer one side pyramid
+
+a=int(input())
+for i in range(1,a+1):
+    print((10**(i-1))*i)
+----------------------------------------------------------------------------------------
+:::::>linked list
+
+class node:
+    def __init__(self,z):
+        self.data=z
+        self.next=None
+class cse:
+    def __init__(self):
+        self.head=None
+    def create(self,x):
+        if(self.head==None):
+           self.head=node(x)
+        else:
+            temp=self.head
+            while(temp.next!=None):
+                temp=temp.next
+            temp.next=node(x)
+    def add_front(self,x):
+        if(self.head==None):
+           self.head=node(x)
+        else:
+            temp=node(x)
+            temp.next=self.head
+            self.head=temp
+    def display(self):
+        temp=self.head
+        while(temp!=None):
+            print(temp.data,end="->")
+            temp=temp.next
+    
+b=cse()
+b.create(10)
+b.create(20)
+b.create(30)
+b.create(40)
+b.add_front(60)
+b.display()
+-----------------------------------------------------------------------------------------
+:::::>or operator
+
+a=4
+b=2
+a=a+1
+b=b-2
+c=(a)|(b+3)
+print(c)
+-----------------------------------------------------------------------------------------
+:::::>position of alphabet
+
+a=input()
+if(a.isupper()):
+    print(ord(a)-64)#only for small alphabets
+else:
+    print(ord(a)-96)
+----------------------------------------------------------------------------------------
+:::::>recursion
+
+def cse():
+    print("hi")
+    ece()
+def ece():
+    print("hlo")
+    cse()
+ece()
+cse()
+print(2)
+----------------------------------------------------------------------------------------
+:::::>reverse pyramid
+
+a=int(input())
+for i in range(a):
+   print(" "*(a+i) + "* " *(a-i))
+-----------------------------------------------------------------------------------------
+:::::>star full pyramid
+
+a=int(input())
+for i in range(a):
+    for j in range(a-i):
+        print(" ",end='')
+    for k in range(i+1):
+        print("*",end=' ')
+    print()
+------------------------------------------------------------------------------------------
+:::::>star full pyramid(another logic)
+
+a=int(input())
+for i in range(a):
+   print(" "*(a-i) + "* " *(i+1))
+------------------------------------------------------------------------------------------
+:::::>star one side pyramid
+
+a=int(input())
+for i in range(a):
+   for j in range(i+1):
+        print("*",end=' ')
+   print()
+-----------------------------------------------------------------------------------------
+:::::>star one side pyramid(another logic)
+
+a=int(input())
+for i in range(a):
+    print("* " * (i+1))
+-----------------------------------------------------------------------------------------
+:::::>star square format
+
+a=int(input())
+for i in range(a):
+   for j in range(a):
+        print("*",end=' ')
+   print()
+------------------------------------------------------------------------------------------
+:::::>static method
+
+class cse:
+    def qwer(self):
+        print("hlo")
+a=cse()
+a.qwer()
+cse.qwer(a)
+#a is the object
+#qwer is method_name
+#cse is class
+-----------------------------------------------------------------------------------------
+:::::>stopping recursion
+
+def cse(x):
+    if(x==0):
+        return 0;
+    print(x)
+    cse(x-1)
+cse(4)

@@ -1,0 +1,119 @@
+_____________SLIDING WINDOW ALGORITHM(CONTINOUS ALGORITHM),PRIME'S ALGORITHM(sieve of eratosthenes)_______________:
+
+*used for continous substring.
+same as 2pointer algorithm.
+* one pointer at starting and another is at last.
+* we are going to use 2pointers here in sliding window alg.
+EXAMPLE:ARRAY AND ITS TARGET.
+whose sum should be its target.
+CONSIDER ARRAY 2 5 6 7 8 10 
+target=13
+* one pointer is at 2 ie."i".
+* if i is equal to target we return it..
+* if not j will be in next element at 2. 7<13( CONSIDER NEXT ELEMENT)
+sum of those 3-> 2+5+6=13
+TARGET FOUND..!! 
+Time complexity -> O(N)
+---------------------------------------------------------------------------------------
+:::::>prime number
+
+def SieveOfEratosthenes(num):
+    prime=[True]*(num+1)
+    p=2
+    while(p*p<=num):
+        if prime[p]:
+            for i in range(p*p,num+1,p):
+                prime[i]=False
+        p+=1
+    for p in range(2,num+1):
+        if prime[p]:
+            print(p)
+num=30  
+SieveOfEratosthenes(num)                                                            
+------------------------------------------------------------------------------------------
+:::::>sliding window
+
+l=[2,5,6,7,8,10]
+target=7
+i=0   #intially all values are set to zero.
+j=0
+currsum=l[0] #2 is current sum.
+while j<len(l):
+    if currsum==target:
+        print(i,j,currsum)
+        break
+    elif currsum>target:
+        currsum-=l[i]
+        i+=1
+    else:
+        j+=1
+        currsum+=l[j]
+
+* LONGEST SUBSTRING WITHOUT REPEATING ITS CHARACTERS.
+
+STATEMENT:Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+
+//code::
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l,longestSubstring=0,0
+        sw=set()
+        for r in range(len(s)):
+            while s[r] in sw:
+                sw.remove(s[l])
+                l+=1
+            sw.add(s[r])
+            longestSubstring=max(longestSubstring,(r-l+1))
+        return longestSubstring
+       
+________________________________________________________________________________________________
+
+PRINTING HISTOGRAM:
+
+INPUT: LIST=[10,9,12,4,5,2,8,5,3,1]
+OUTPUT:
+12 |        x                      
+11 |        x                      
+10 |  x     x                      
+ 9 |  x  x  x                      
+ 8 |  x  x  x           x          
+ 7 |  x  x  x           x          
+ 6 |  x  x  x           x          
+ 5 |  x  x  x     x     x  x       
+ 4 |  x  x  x  x  x     x  x       
+ 3 |  x  x  x  x  x     x  x  x    
+ 2 |  x  x  x  x  x  x  x  x  x    
+ 1 |  x  x  x  x  x  x  x  x  x  x 
+
+
+//CODE:
+ist=[10,9,12,4,5,2,8,5,3,1]
+mx=max(list)
+#print(mx)  6 will be printed.
+for i in range(mx,0,-1):
+    print(f"{i:2d} | ",end="")
+    for j in list:
+        if j>=i:
+            print(" x ",end="")
+        else:
+            print("   ",end="")
+    print()
+__________________________________________________________________________________________________
+

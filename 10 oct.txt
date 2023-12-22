@@ -1,0 +1,161 @@
+*hashing:hashing is a technique to reduce searching time in an algorithm at the expense of space.
+*hash table:hash table is a array in which we store elements according to some key and this key is calculated by hash function.
+* Open hashing
+* chaining/closed addressing 
+* open addressing or closed hashing.
+* linear probing.
+* quadratic probing.
+* double hashing.
+* mid square.
+* wrapping.( used for large integer numbers)
+* we have direct functions for hashing in python..
+*hash function:hash function is used to find key from array elements.
+-->for finding key,there are 4 methods:
+1.h(k)=i%10(division by 10) : where i is element in the array.
+2.h(k)=i%n(division by n) : n is not the length of the list, 'n' can be any number.
+3.mid square : ex:2 3 6->take mid elementt and square it =3^2=9 so at 9th index we place element.
+4.wrapping: ex: 1 2 3   4 5 6 add these no's =579 in this index you will place element
+               no. of elements in hash table
+->load factor= ------------------------------
+                  size of hash table
+*collision:collision happens when hash function gives same keys for more than one element
+*to avoid collision->
+1.direct chaining/closed addressing/open hashing:
+l=[38,23,21,45,46]
+h(k)=i%5                        --------------
+38%5=3                        0 |   45       |
+23%5=3                        1 |      21    |
+21%5=1                        2 |            |
+45%5=0                        3 |      38    | 
+46%5=1                        4 |            |
+                              5 |            | 
+                                ---------------
+2.open addresing /closed hashing/closed chaining
+*there are two types:
+----->a)linear probing:
+h(k)=i%5
+xhash(k)=(i+1)%5
+l=[38,23,21,45,46]
+h(k)=i%5                        --------------
+38%5=3                        0 |   45       |
+23%5=3                        1 |      21    |
+(23+1)%5=4
+21%5=1                        2 |   46       |
+45%5=0                        3 |      38    | 
+46%5=1                        4 |   23       |
+(46+1)%5=2
+                              5 |            | 
+                                ---------------
+----->b)quadratic probing:
+h(k)=i%11
+xhash(k)=(i+k^2)%11
+l=[31,19,2,13,25,24]
+h(k)=i%5                        --------------
+38%5=3                        0 |   45       |
+23%5=3                        1 |      21    |
+(23+1)%5=4
+21%5=1                        2 |   46       |
+45%5=0                        3 |      38    | 
+46%5=1                        4 |   23       |
+(46+1)%5=2
+                              5 |            | 
+                                ---------------
+
+------------------------------------------------------------------------------------------
+:::::>binary search
+
+def binary_search(arr, low, high, key):
+    if high >= low:
+        mid = (low+high) // 2
+        if arr[mid] == key:
+            return mid
+        if key < arr[mid]:
+            return binary_search(arr, low, mid-1, key)
+        if key > arr[mid]:
+            return binary_search(arr, mid+1, high, key)
+    else:
+        return -1
+arr = [1,2,3,4,5,6,7,8,9]
+key = 11
+res = binary_search(arr, 0, len(arr)-1, key)
+if res == -1:
+    print("element not present")
+else:
+    print("element is presen at : ", res)
+------------------------------------------------------------------------------------------
+:::::>merge sort
+
+ def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr)//2
+    left_half = arr[:mid]
+    right_half = arr[mid:]
+    
+    left_half = merge_sort(left_half)
+    right_half = merge_sort(right_half)
+    merged_arr = merge(left_half, right_half)
+    return merged_arr
+arr = [34, 78, 56, 71, 91, 12, 9]
+sorted_arr = merge_sort(arr)
+print(sorted_arr)
+------------------------------------------------------------------------------------------
+:::::>sort colors
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l=i=0
+        r=len(nums)-1
+        while i<=r:
+            if nums[i]==0:
+                nums[l],nums[i]=nums[i],nums[l]
+                l+=1
+                i+=1
+            elif nums[i]==1:
+                i+=1
+            elif nums[i]==2:
+                nums[i],nums[r]=nums[r],nums[i]
+                r-=1
+------------------------------------------------------------------------------------------
+:::::>trapping rain water
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:return True
+        l=0
+        r=len(height)-1
+        maxl=height[l]
+        maxr=height[r]
+        res=0
+        while l<r:
+            if maxl<maxr:
+                l+=1
+                maxl=max(maxl,height[l])
+                res+=maxl-height[l]
+            else:
+                r-=1
+                maxr=max(maxr,height[r])
+                res+=maxr-height[r]
+        return res
+
+------------------------------------------------------------------------------------------
+:::::>unique morse code words
+
+class Solution:
+    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+        a="abcdefghijklmnopqrstuvwxyz"
+        m=[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        d={}
+        for i in range(len(a)):
+            d[a[i]]=m[i]
+        l=[]
+        for i in words:
+            s=''
+            for j in i:
+                s+=d[j]
+            l.append(s)
+        return len(set(l))
+

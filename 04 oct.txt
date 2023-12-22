@@ -1,0 +1,156 @@
+* sorting algorithms,magic square and check subset sum(backtracking)
+* INSERTION SORT
+* BUBBLE SORT
+* SELECTION SORT
+* radix sort and heap sort
+----------------------------------------------------------------------------------------
+magic square:
+* if n=3 then the elements are from 1-9.(n2)
+* 1 +2+...+9=45
+45/3=15
+* the sum  of row,column and diagonal should be 15.
+-----------------------------------------------------------------------------------------
+:::::>bubble sort
+
+def bubblesort(l):
+    for i in range(0,len(l)-1):
+       for j in range(len(l)-1):
+           if l[j]>l[j+1]:
+               l[j],l[j+1]=l[j+1],l[j]
+    return l
+l=list(map(int,input().split()))
+print(*bubblesort(l))
+-----------------------------------------------------------------------------------------
+:::::>insertion sort
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+# Example usage:
+my_list =list(map(int,input().split(",")))
+insertion_sort(my_list)
+print( *my_list,sep=",")
+-----------------------------------------------------------------------------------------
+:::::>magic square
+
+n=int(input())
+sq=[[0]*n for i in range(n)]
+num=1
+i=n//2
+j=n-1
+while num<=(n*n):
+    if i<0 and j==n:
+        i=0
+        j=n-2
+    else:
+        if i==0:
+            i=n-1
+        if j==n:
+            j=0
+        if sq[i][j]:
+            i=i+1
+            j=j-2
+            continue
+        sq[i][j]=num
+        num+=1
+        i=i-1
+        j=j+1
+for i in sq:
+    print(*i)
+print("magic constant=",n*((n*n)+1)//2)
+-----------------------------------------------------------------------------------------
+:::::>magic square using loops
+
+n=int(input())
+sq=[[0]*n for i in range(n)]
+num=1
+i=n//2
+j=n-1
+while num<=(n*n):
+    if i<0 and j==n:
+        i=0
+        j=n-2
+    else:
+        if i==0:
+            i=n-1
+        if j==n:
+            j=0
+        if sq[i][j]:
+            i=i+1
+            j=j-2
+            continue
+        sq[i][j]=num
+        num+=1
+        i=i-1
+        j=j+1
+for i in sq:
+    print(*i)
+print("magic constant=",n*((n*n)+1)//2)
+-----------------------------------------------------------------------------------------
+:::::>selection sort
+
+def selection_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    min_index = arr.index(min(arr))
+    arr[0], arr[min_index] = arr[min_index], arr[0]
+    sorted_tail = selection_sort(arr[1:])
+    return [arr[0]] + sorted_tail
+unsorted_list = [64, 25, 12, 22, 11]
+sorted_list = selection_sort(unsorted_list)
+print(*sorted_list,sep=", ")
+-----------------------------------------------------------------------------------------
+:::::>subset sum
+
+def check(nums,target):
+    def backtrack(start,sum):
+        if sum==target:
+            return True
+        if sum>target or start==len(nums):
+            return False
+        if backtrack(start+1,sum+nums[start]):
+            subset.append(nums[start])
+            return True
+        return backtrack(start+1,sum)
+    subset=[]
+    if backtrack(0,0):
+        return True, subset
+    else:
+        return False, []
+nums=list(map(int,input().split("")))
+target_sum=int(input())
+bool,subset = check(nums,target_sum)
+if bool:
+    print("subset with sum",target_sum,"exists:",subset)
+else:
+    print("No subset with sum",target_sum,"exists:",subset)
+-----------------------------------------------------------------------------------------
+:::::>magic square using recursion
+
+def generate_sq(n):
+    sq=[[0]*n for i in range(n)]
+    def fill(i,j,num):
+        if num>(n*n):
+            return sq
+        if i<0 and j==n:
+            i=0
+            j=j-2
+        else:
+            if i<0:
+                i=n-1
+            if j==n:
+                j=0
+        if sq[i][j]:
+            i=i+1
+            j=j-2
+            return fill(i,j,num)
+        sq[i][j]=num
+        return fill(i-1,j+1,num+1)
+     return fill(n//2,n-1,1)
+n=int(input())
+print(generate_sq(n))

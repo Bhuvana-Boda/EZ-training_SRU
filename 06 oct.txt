@@ -1,0 +1,104 @@
+-----------COUNT SORT---------(unstable sorting technique)
+
+* merge sort is stable sorting technique.(sequence)
+* bubble sort is stable sorting technique.(sequence)
+* insertion sort is stable sorting technique.
+* selection sort is unstable sorting technique,because we are changing the positions.
+* COUNT SORT is used mostly when array has duplicate elements.
+* THE COMPLEXITY OF COUNT SORT IS LESS.AND COUNT SORT IS MORE FEASIBLE.
+
+interview question:: which sorting you will prefer? depends on list..if range is high we use bubble sort.
+* Every variable,list in python is a object..
+nd every datatype is a class.
+* for loop syntax in python:
+
+FOR VARIABLE IN RANGE():
+
+IN is a membership operator.
+3) BINARY SEARCH
+* Binary search time complexity:: O(logn).
+depth of binary search tree is: logn
+(dividing the array and finding the mid)
+
+--> MASTERS THOEREM:
+
+a T(n/b)+f(n)
+a -> no.of subproblems
+b -> factors
+f(n) -> for outside recursion.
+n/b -> for inside recursion.
+_______________________________
+------------------------------------------------------------------------------
+:::::>check whether array is sorted or not
+
+def is_sorted(arr):
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i + 1]:
+            return False
+    return True
+my_array =list(map(int,input().split(",")))
+if is_sorted(my_array):
+    print(True)
+else:
+    print(False)
+-----------------------------------------------------------------------------------------
+:::::>converting integer into float
+
+integer_value = int(input())
+float_value = integer_value + 0.0
+print(float_value)   
+-----------------------------------------------------------------------------------------
+:::::>converting integer into float statically
+
+integer_list = [1, 2, 3, 4, 5]
+float_list = [float(x) for x in integer_list]
+print(float_list)
+-----------------------------------------------------------------------------------------
+:::::>count sort
+
+l=[2,4,8,3,8,1,2,4,7,4]
+count=[0 for i in range(10)] 
+for i in range(len(l)):
+    count[l[i]]+=1
+#for cumulative addition
+for i in range(1,len(count)):
+    count[i]+=count[i-1]
+#print(count)
+res=[0]*len(l)
+for i in range(len(l)):
+    res[count[l[i]]-1]=l[i]
+    count[l[i]]-=1
+print(*res,sep=", ")
+-----------------------------------------------------------------------------------------
+:::::>divide and conquer logic for sum of array elements
+
+def sumar(l,si,fi):
+    if si==fi:
+        return l[si]
+    if si>li:
+        return -1
+    mid=si+fi//2
+return sumar(l,si,mid)+sumar(l,mid+1,li)
+-----------------------------------------------------------------------------------------
+:::::>enumurarion function
+
+a=[1,3,4,5,6,9]
+b=[1,2,3,2,1,3]
+print(list(enumerate(a)))
+-----------------------------------------------------------------------------------------
+:::::>sum of array elements 
+
+def recursive_sum(arr, n):
+    if n == 0:
+        return 0
+    else:
+        return arr[n - 1] + recursive_sum(arr, n - 1)
+arr = list(map(int,input().split()))
+result = recursive_sum(arr, len(arr))
+print(result)
+-----------------------------------------------------------------------------------------
+:::::>zip function
+
+a=[1,3,4,5,6,9]
+b=[1,2,3,2,1,3]
+print(list(zip(a,b)))

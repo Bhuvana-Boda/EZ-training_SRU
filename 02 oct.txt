@@ -1,0 +1,229 @@
+* To get recursion topic:
+1.solve mcqs(40-50)
+2.write code
+* Recursion is used for tree traversals,graph traversals,dynamic programming.
+* After recursive call there is no return is called tail recursive.
+* In python multiple comment lines can be written as """  hello """.
+* Recursion is used for backtracking .dynamic programming nd etc..
+* Backtracking means coming back and undo the choice we made.
+   For more than 8lpa package we need to 
+1) solve mcqs (CAPGEMINI,TCS etc)
+2) write code for recursion.(table printing,,...printing n to 1....simple codes)
+
+
+-------------------------------------------------------------------------------------
+:::::>how idiot are you
+
+import random
+a=input('entha bangaram na dudu')
+print(random.randint(1,100),'%')
+--------------------------------------------------------------------------------------
+:::::>land water
+
+l=[[0,1,0,1],[1,1,0,0],[0,0,1,0],[0,0,1,1]]
+n=len(l)
+def fun(l,i,j,n):
+    if l[i][j]==1:
+        l[i][j]=0
+    if l[i][j]==0:
+        return 
+    if i>0:
+        fun(l,i,j+1,n)
+    if i<n-1:
+        fun(l,i,j-1,n)
+    if i>0:
+        fun(l,i-1,j,n)
+    if i<n-1:
+        fun(l,i+1,j,n)
+    return l
+count=0
+for i in range(n):
+    for j in range(n):
+        if l[i][j]==1
+           count+=1
+           fun(l,i,j,n)
+print(count)
+           
+--------------------------------------------------------------------------------------
+:::::>mcq1
+
+#include<stdio.h>
+int fun(int n)
+{
+	if(n==4)
+	  return n;
+	else return 2*fun(n+1);
+}
+int main()
+{
+	printf("%d",fun(2));
+	return 0;
+}
+/*f(2)->2*f(3)
+        8->2*f(4)
+           16   4==4(return n)
+*/
+--------------------------------------------------------------------------------------
+:::::>mcq2
+
+int fun(int x,int y)
+
+{ 
+      if(x==0)
+          return y;
+      return fun(x-1,x+y);
+}
+/*f(4,3)->f(3,7)->f(2,10)->f(1,12)->f(0,13)*/
+
+--------------------------------------------------------------------------------------
+:::::>mcq3
+
+void fun(int n)
+{
+	if(n=0)
+	  return 0;
+	printf("%d",n%2);
+	fun(n/2);
+}
+/*f(25)->f(25%2)->f(12)->f(6)->f(3)->f(1) 
+10011*/
+--------------------------------------------------------------------------------------
+:::::>mcq4
+
+int fun(int x,int y)
+{
+	if(y==0)
+	   return 0;
+	return (x+fun(x,y-1));
+}
+int fun2(int a,int b)
+{
+	if(b==0)
+	   return 1;
+	return fun(a,fun2(a,b-1));
+}
+/*eg: f(2,3)->f(2,f2(2,2))
+      f(2,2)->f(2,f2(2,1))
+      f(2,1)->f(2,f2(2,0))
+      f(2,0)->b== 0 then it return 1 so
+      f(2,1)->2+f(2,0)->y==0 then it return 0-->2
+      f(2,2)->2+f(2,1)
+                 2+f(2,0)-->4
+      f(2,4)->2+f(2,3)
+                 2+f(2,2)-->8
+*/ 
+--------------------------------------------------------------------------------------
+:::::>mcq5
+
+void print(int n)
+{
+	if(n>4000)
+	   return;
+	printf("%d",n);
+	print(2*n);
+	printf("%d",n);
+}
+int main()
+{
+	print(1000);
+	getchar();
+	return 0;
+}
+/* p(1000)->1000->2*1000->2000====>p(2000)->2000->2*2000->4000====>p(4000)->4000>4000->false
+     same in reverse*/
+ 
+--------------------------------------------------------------------------------------
+:::::>mcq6
+
+#include<stdio.h>
+int f(int n)
+{
+	if(n<=1)
+	  return 1;
+	if(n%2=0)
+	  return f(n/2);
+	return f(n/2)+f(n/2+1);
+}
+int main()
+{
+	printf("%d",f(11));
+	return 0;
+}
+--------------------------------------------------------------------------------------
+:::::>numbers from 1 to 5 using loops
+
+a=int(inpu())
+for i in range(1,a+1):
+    print(i)
+--------------------------------------------------------------------------------------
+:::::>numbers from 1 to 5 using recursion
+
+n=int(input())
+def fun(n):
+    if n==0:
+        return
+    fun(n-1)
+    print(n)
+fun(n)
+--------------------------------------------------------------------------------------
+:::::>palindrome
+
+string=input(("Enter a letter:"))  
+if(string==string[::-1]):  
+      print("true")  
+else:  
+      print("false")this is for string
+--------------------------------------------------------------------------------------
+:::::>palindrome number using loop
+
+num = int(input("Enter a value:"))  
+temp = num  
+rev = 0  
+while(num > 0):  
+    dig = num % 10  
+    rev = rev * 10 + dig  
+    num= num // 10  
+if(temp == rev):  
+    print("This value is a palindrome number!")  
+else:  
+    print("This value is not a palindrome number!") 
+--------------------------------------------------------------------------------------
+:::::>palindrome using loop
+
+s=input()
+i=0
+j=len(s)-1
+while (i<j):
+    if s[i]!=s[j]:
+        print("not palindrome")
+        break
+    i+=1
+    j-=1
+else:
+    print("palindrome")
+--------------------------------------------------------------------------------------
+:::::>palindrome using recursion
+
+def fun(s,i,j):
+    if i>j:
+        return True
+    if s[i]!=s[j]:
+        return False
+    return fun(s,i+1,j-1)
+s=input()
+print(fun(s,0,len(s)-1))
+--------------------------------------------------------------------------------------
+:::::>tower of hanoi
+
+def towers_of_hanoi(n, source, auxiliary, target):
+    if n == 1:
+        return 1
+    else:
+        count1 = towers_of_hanoi(n-1, source, target, auxiliary)
+        count2 = towers_of_hanoi(n-1, auxiliary, source, target)
+        return 1 + count1 + count2
+
+n = int(input())
+total_moves = towers_of_hanoi(n, 'A', 'B', 'C')
+print(total_moves)
+

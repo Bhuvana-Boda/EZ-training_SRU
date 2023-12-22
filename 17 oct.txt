@@ -1,0 +1,281 @@
+---->stack and queue
+* stack :It is a linear data structure which has only one end.follows the principle of last in first out.
+* queue: linear data stucture has 2 ends.first is to enter and another one to remove..first in first out.(insert at beg and dlt at end, nd vice versa).
+* we should not use remove function, we need to use append only.(l.append())
+* and for removing we use l.pop() function only.
+[NO SORT FUNCTION,NO REVERSE FUNCTION,NO REMOVE FUNCTION]
+dequeue HAS popleft,popright functions.
+* dequeue has 2 ends.insertion and deletion happenss..we cant access middle elements in the dqueue.
+* MODULE collection has dqueue.
+--->NON LINEAR DATA STRUCTURES:
+TREES:
+*follows hierarchial format.
+==>types of trees are:
+* BT
+* BST
+* AVL TREE
+* RED BLACK TREE.
+
+****BINARY TREE****:
+* Every node should have only 2 childs.
+* Nodes at the end called as leaf nodes(without childs).
+* Node degree(no.of childrens that the node has)
+* we need to use recursion here(NOT LOOPS).
+----------------------------------------------------------------------------
+:::::>longest common subsequence(lcs algorithm)
+
+def print_matrix(mat):
+    for row in mat:
+        print(row)
+def LCS(s1, s2):
+    row, col = len(s1)+1, len(s2)+1
+    mat = [[None]*col for i in range(row)]
+    for i in range(row):
+        for j in range(col):
+            if i==0 or j == 0:
+                mat[i][j] = 0
+            elif s1[i-1] == s2[j-1]:
+                mat[i][j] = mat[i-1][j-1] + 1
+            else:
+                mat[i][j] = max(mat[i-1][j], mat[i][j-1])
+    print_matrix(mat)
+    return mat[row-1][col-1]
+s1 = "AGTAB"
+s2 = "GXTAYB"
+answer = LCS(s1, s2)
+print("My answer is: ",answer)
+------------------------------------------------------------------------------
+:::::>remove all adjacent duplicates in the string
+
+from collections import deque
+class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        st=collections.deque()
+        for i in s:
+            if not st:
+                st.append(i)
+            elif i==st[-1]:
+                st.pop()
+            else:
+                st.append(i)
+        return "".join(st)
+------------------------------------------------------------------------------
+:::::>2696)minimum string length after removing substrings
+
+from collections import deque
+class Solution:
+    def minLength(self, s: str) -> str:
+        stack=[]
+        for char in s:
+            if stack and(char=='B' and stack[-1]=='A' or char=='D' and stack[-1]=='C'):
+                stack.pop()
+            else:
+                stack.append(char)
+        return len(stack)
+----------------------------------------------------------------------------
+:::::>2390)removing the stars in the string
+
+class Solution:
+  def removeStars(self, s: str) -> str:
+    stack = []
+    for char in s:
+      if char == '*':
+        stack.pop()
+      else:
+        stack.append(char)
+    return "".join(stack)
+----------------------------------------------------------------------------
+:::::>20)valid parantheses
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack=[]
+        for char in s:
+            if char=='(':
+                stack.append(')')
+            elif char=='{':
+                stack.append('}')
+            elif char=='[':
+                stack.append(']')
+            elif not stack or stack.pop() !=char:
+                return False
+        return True
+----------------------------------------------------------------------------
+:::::>641)design circular deque
+
+class MyCircularDeque:
+    def __init__(self, k: int):
+        self.dq=[]
+        self.k=k
+    def insertFront(self, value: int) -> bool:
+        if len(self.dq)<self.k:
+            self.dq=[value]+self.dq
+            return True
+        return False
+    def insertLast(self, value: int) -> bool:
+        if len(self.dq)<self.k:
+            self.dq.append(value)
+            return True
+        return False
+    def deleteFront(self) -> bool:
+        if len(self.dq)>0:
+            self.dq.pop(0)
+            return True
+        return False
+    def deleteLast(self) -> bool:
+        if len(self.dq)>0:
+            self.dq.pop()
+            return True
+        return False
+
+    def getFront(self) -> int:
+        if len(self.dq)>0:
+            return self.dq[0]
+        return -1
+   
+    def getRear(self) -> int:
+        if len(self.dq)>0:
+            return self.dq[-1]
+        return -1
+
+    def isEmpty(self) -> bool:
+        if not self.dq:
+            return True
+        return False
+
+    def isFull(self) -> bool:
+        if len(self.dq)==self.k:
+            return True
+        return False
+
+# Your MyCircularDeque object will be instantiated and called as such:
+# obj = MyCircularDeque(k)
+# param_1 = obj.insertFront(value)
+# param_2 = obj.insertLast(value)
+# param_3 = obj.deleteFront()
+# param_4 = obj.deleteLast()
+# param_5 = obj.getFront()
+# param_6 = obj.getRear()
+# param_7 = obj.isEmpty()
+# param_8 = obj.isFull()
+---------------------------------------------------------------------------
+:::::>binary tree
+
+class node:
+    def __init__(self,data):
+        self.val=data
+        self.right=None
+        self.left=None
+def prints(root):
+    if root==None:
+        return
+    prints(root.left)
+    prints(root.right)
+    print(root.val)
+
+root=node(1)
+root.left=node(2)
+root.right=node(3)
+root.left.left=node(4)
+root.left.right=node(5)
+---------------------------------------------------------------------------
+:::::>preorder traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        l=[]
+        def preorder(root):
+            if root==None:
+                return
+            l.append(root.val)
+            preorder(root.left)
+            preorder(root.right)
+        preorder(root)
+        return l
+-----------------------------------------------------------------------------
+:::::>postorder traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        l=[]
+        def postorder(root):
+            if root==None:
+                return
+            postorder(root.left)
+            postorder(root.right)
+            l.append(root.val)
+        postorder(root)
+        return l
+-----------------------------------------------------------------------------
+:::::>inorder traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        l=[]
+        def inorder(root):
+            if root==None:
+                return
+            inorder(root.left)
+            l.append(root.val)
+            inorder(root.right)
+        inorder(root)
+        return l  
+----------------------------------------------------------------------------
+:::::>level order traversal(bfs)
+
+q=[]
+q.append(root)
+while q:
+    a=q.pop(0)
+    print(a.val)
+    if a.left:
+        q.append(a.left)
+    if a.right:
+        q.append(a.right)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

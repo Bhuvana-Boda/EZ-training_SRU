@@ -1,0 +1,55 @@
+______________object oriented programming,problemsolving with strings_____________________
+
+ * inheritance.
+* polymorphism.
+* SELF IS INSTANCE OF A CLASS.
+* super function.(directly we get access to the parent class.)
+----------------------------------------------------------------------------------------
+:::::>fibonacci series using dynmaic programming
+
+def fib(n,dp):
+    if dp[n]:
+        return dp[n]
+    if n==0:
+        dp[0]=0
+        return 0
+    if n==1:
+        dp[1]=1
+        return 1
+    else:
+        dp[n]=fib(n-1,dp)+fib(n-2,dp)
+    return dp
+------------------------------------------------------------------------------------------
+:::::>fibonacci series using dynamic programming (another method)
+
+def fib(n,dp):
+    if dp[n]:
+        return dp[n]
+    if n==0:
+        dp[0]=0
+        return 0
+    if n==1:
+        dp[1]=1
+        return 1
+    else:
+        dp[n]=fib(n-1,dp)+fib(n-2,dp)
+    return dp
+------------------------------------------------------------------------------------------
+:::::>inheritance
+
+class cse:
+    def fun1(self,a):
+        print("fun1-father",a)
+class two:
+    def fun2(self):
+        print("fun2-mother")
+class three(two,cse):
+    def fun3(self,a):
+        print("child",a)
+#creating object for the class cse
+o=cse()   
+o.fun1(2) #calling a function which is in the object.
+a=two() #creating object for two class.
+a.fun2()    #accessing
+b=three()    #creating
+b.fun3(10)

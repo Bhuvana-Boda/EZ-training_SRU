@@ -1,0 +1,327 @@
+*In && operator if 1st condition is false it doesnot check all other conditions and goes to else block.
+*In & operator if 1st condition is false it checks other conditions also and goes to else block
+*In || operator if 1st condition is false it doesnot check all other conditions and executes if block.
+*In | operator if 1st condition is false it checks all other conditions and executes if block.
+*bitwise left shift means multiplication.
+*bitwise right shift means division.
+*negation --> n=-(n+1) --> -(100+1) --->-101.
+---------------------------------------------------------------------------------------------
+:::::>bitset count
+
+#include<stdio.h>
+main()
+{
+	int a=9,count=0;
+    while(a)
+{
+	count++;
+	a=a&(a-1);
+}
+printf("countset bits=%d",count);
+}
+-------------------------------------------------------------------------------------
+:::::>bitset count(another logic)
+
+  while(a>0)
+               {
+                    if(a&1)
+                    {
+                        count++;
+                    }
+                    a=a>>1;
+                }
+                printf("count setbits=%d,count);
+------------------------------------------------------------------------------------
+:::::>bitwise example
+
+#include<stdio.h>
+main()
+{
+	int a=15,i=4;
+	if(a&(1<<(i-1)))
+	{
+		printf("yes");
+	}
+	else
+	{
+		printf("no");
+	}
+}
+------------------------------------------------------------------------------------
+:::::>bitwise operators
+
+#include<stdio.h>
+main()
+{
+	int a=10;
+	if(a==10 || a++<200 || a++==12)
+	{
+		printf("Hello %d",a);
+	}
+	else
+	{
+		printf("hii %d",a);
+	}
+}
+------------------------------------------------------------------------------------
+:::::>even or odd using bitwise operators
+
+#include<stdio.h>
+main()
+{
+	int a=15;
+	if(a&1==1)
+	{
+		printf("odd\n");
+	}
+	else
+	{
+		printf("even");
+	}
+}
+-------------------------------------------------------------------------------------
+:::::>factorial using recursion
+
+#include<stdio.h>
+int fact(int n);
+main()
+{
+	int n;
+	printf("enter the no.:");
+	scanf("%d",&n);
+	printf("%d",fact(n));
+	
+}
+int fact(int n)
+{
+	if(n<=1)
+	{
+		return n*fact(n-1);
+	}
+	else
+	{
+		return 1;
+	}
+}
+-------------------------------------------------------------------------------------
+:::::>fibonacci
+
+#include<stdio.h>
+int main()
+{
+int f=0, s=1, i, n, sum=0;
+printf("Enter the number of terms: ");
+scanf("%d",&n);
+printf("Fibonacci Series:");
+for(i=0 ; i<n ; i++)
+{
+if(i <= 1)
+{
+sum=i;
+}
+else
+{
+sum=f+s;
+f=s;
+s=sum;
+}
+printf(" %d",sum);
+}
+return 0;
+}
+-------------------------------------------------------------------------------------
+:::::>fibonacci using recursion
+
+#include<stdio.h>
+long long int fib(long long int  num)
+{
+	if(num==0 || num==1)
+	{
+		return num;
+	}
+	else
+	{
+		return fib(num-1)+fib(num-2);
+	}
+}
+int main()
+{
+	long long int num,i;
+	printf("enter total no. of elements");
+	scanf("%lld",&num);
+	for(i=0;i<num;i++)
+	{
+		printf("%lld ",fib(i));
+	}
+}
+--------------------------------------------------------------------------------
+:::::>lonely integers
+
+#include<stdio.h>
+main()
+{
+	int a[]={10,20,30,20,10,35,30 };
+	int res=0,i=0;
+	for(i=0;i<8;i++)
+	{
+		res=res^a[i];
+	}
+	printf("%d",res);
+}
+-----------------------------------------------------------------------------------
+:::::>missing number
+
+#include<stdio.h>
+main()
+{
+	int a[]={1,2,3,5};
+	int x=0,i=0;
+	for(i=0;i<=4;i++)
+	x=x^i;
+	for(i=0;i<4-1;i++)
+	x=x^a[i];
+	printf("%d",x);
+}
+-------------------------------------------------------------------------------------
+:::::>negation
+
+#include<stdio.h>
+main()
+{
+	int a=~100;
+	printf("%d",a);
+}
+-----------------------------------------------------------------------------------
+:::::>number is power of 2 or not
+
+#include<stdio.h>
+main()
+{
+	int n;
+	printf("enter element");
+	scanf("%d",&n);
+	if((n&(n-1))==0)
+	printf("yes");
+	else
+	printf("no");
+}
+-------------------------------------------------------------------------------------
+:::::>number is power of 2 or not(another logic)
+
+int n=1024,c=0;
+    while(n)
+    {
+    c++;
+    n=n&(n-1);
+}
+if(c==1)
+{
+printf("yes");
+}
+else
+{
+printf("no");
+}
+-------------------------------------------------------------------------------------
+:::::>number is power of 3 or not
+
+#include<stdio.h>
+main()
+{
+	int n;
+	printf("enter element");
+	scanf("%d",&n);
+	if((n&(n-2))==0)
+	printf("yes");
+	else
+	printf("no");
+}
+---------------------------------------------------------------------------------------
+:::::>number is power of 3 or not(another logic)
+
+int n=1024,c=0;
+    while(n)
+    {
+    c++;
+    n=n&(n-2);
+}
+if(c==1)
+{
+printf("yes");
+}
+else
+{
+printf("no");
+}
+-----------------------------------------------------------------------------------------
+:::::>number is power of 4 or not
+
+#include<stdio.h>
+main()
+{
+	int n;
+	printf("enter element");
+	scanf("%d",&n);
+	if((n&(n-3))==0)
+	printf("yes");
+	else
+	printf("no");
+}
+----------------------------------------------------------------------------------------
+:::::>number is power of 4 or not(another logic)
+
+int n=1024,c=0;
+    while(n)
+    {
+    c++;
+    n=n&(n-3);
+}
+if(c==1)
+{
+printf("yes");
+}
+else
+{
+printf("no");
+}
+-----------------------------------------------------------------------------------------
+:::::>smallest number is greater than n
+
+#include<stdio.h>
+main()
+{
+	int a=30;
+	printf("%d",a | a+1);
+}
+------------------------------------------------------------------------------------------
+:::::>tower of hanoi
+
+#include<stdio.h>
+void tower(int n,char from,char to,char aux)
+{
+	if(n==1)
+	{
+		printf("\n Move disk 1 from rod %c to rod %c", from, to);
+		return;
+	}
+	tower(n-1,from,aux,to);
+	 printf("\n Move disk %d from rod %c to rod %c", n, from, to);
+    tower(n-1, aux, to, from);
+}
+int main()
+{
+    int n = 4;
+    tower(n, 'A', 'C', 'B');
+}
+-----------------------------------------------------------------------------------------
+:::::>tower of hanoi in python
+
+def toh(n,source,auxilary,destination):
+    if n==0:
+       return
+    toh(n-1,source,destination,auxilary)
+    print("disk ",n," moved from ",source,"to ",destination)
+    toh(n-1,auxilary,source,destination)
+n=int(input())
+source,auxilary,destination=input().split()
+toh(n,source,auxilary,destination)

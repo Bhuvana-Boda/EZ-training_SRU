@@ -1,0 +1,220 @@
+************************data structures***************************
+:::::>basic program
+
+class node:
+    def __init__(self,val=0): #constructor.
+        self.val=val
+        self.next=None
+o1=node(1)
+o2=node(2)
+o3=node(3)
+o1.next=o2
+o2.next=o3
+print(o1,o1.val,o1.next,sep='\n')
+print(o2,o2.val,o2.next,sep='\n')
+print(o3,o3.val,o3.next,sep='\n')
+
+//output:
+<__main__.node object at 0x000001505CDECF10>
+1
+<__main__.node object at 0x000001505D4151D0>
+<__main__.node object at 0x000001505D4151D0>
+2
+<__main__.node object at 0x000001505D4153D0>
+<__main__.node object at 0x000001505D4153D0>
+3
+None
+----------------------------------------------------------------------------
+:::::>linked list(inserting,deleting)
+
+class node:
+    def init(self,val=0):
+        self.val=val
+        self.next=None
+class sll:
+    def init(self):
+        self.head=None
+    def insertatbeg(self,data):
+        if self.head==None:dl
+            self.head=node(data)
+        else:
+            self.head.next=node(data)
+    def insertatend(self,data):
+        if self.head==None:
+            self.head=node(data)
+        else:
+            curr=self.head
+            while(curr.next):
+                curr=curr.next
+            new=node(data)
+            curr.next=new
+    def deleteatbeg(self):
+        if self.head==None:
+            return
+        temp=self.head
+        self.head=self.head.next
+        temp.next=None
+        return temp.val
+    def delatend(self):
+        if self.head==None:
+            return 
+        temp=self.head
+        while(temp.next.next):
+            temp=temp.next
+        temp.next=None
+    def printing(self):
+        temp=self.head
+        while(temp):
+            print(temp.val,end="->")
+            temp=temp.next
+'''def insertatbeg(head,data):
+    pass'''
+'''o1=node(1)
+o1.next=node(2)
+o1.next.next=node(3)'''
+#o1.next=o2 #itself is an object
+#o2.next=o3
+#print(o1) #prints memory location
+#print(o1,o2,o3,sep='\n')
+#print(o1.val,o2.val,o3.val,sep='\n')
+'''print(o1,o1.val,o1.next)
+print(o2,o2.val,o2.next)'''
+l=[2,4,6,8,9]
+o=sll()
+for i in l:
+    o.insertatbeg(i)
+o.printing()
+----------------------------------------------------------------------------
+:::::>converting the binary numbers in a linked list to integers
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        s=""
+        curr=head
+        while(curr):
+            s+=str(curr.val)
+            curr=curr.next
+        return int(s,2)
+---------------------------------------------------------------------------
+:::::>876)middle of the linked list(usig slow and fast)
+
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+        while fast and fast.next:  
+            slow = slow.next  #moves one step ahead
+            fast = fast.next.next #moves 2 step ahead
+        return slow
+----------------------------------------------------------------------------
+:::::>2096)delete the middles node of the linked list
+
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        newnode=ListNode()
+        newnode.next=head
+        slow=newnode
+        fast=head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        slow.next=slow.next.next
+        return newnode.next
+----------------------------------------------------------------------------
+:::::>doubly linked list
+
+class node:
+    def __init__(self,val=0):
+        self.val=val
+        self.next=None
+        self.prev=None
+class dll:
+    def __init__(self):
+        self.head=None
+        self.tail=None
+    def insertatbeg(self,data):
+        if self.head==None:
+            self.head=node(data)
+            self.tail=self.head
+        else:
+            new=node(data)
+            new.next=self.head
+            self.head.prev=new
+            self.head=new
+    def insertatend(self,data):
+        if self.head==None:
+            self.head=node(data)
+            self.tail=self.head
+        else:
+            new=node(data)
+            new.prev=self.tail
+            self.tail.next=new
+            self.tail=new
+    
+    def deleteatbeg(self):
+        if self.head==None:
+            return
+        self.head=self.head.next
+        self.head.prev=None
+    def delatend(self):
+        if self.head==None:
+            return 
+        self.tail=self.tail.prev
+        self.tail.next=None
+        
+    def printing(self):
+        temp=self.head
+        while(temp):
+            print(temp.val,end="->")
+            temp=temp.next
+l=[2,4,6,8,9]
+o=dll()
+for i in l:
+    o.insertatbeg(i)
+o.printing()
+---------------------------------------------------------------------------
+:::::>203)remove the linked lists elements
+
+class Solution:
+  def removeElements(self, head: ListNode, val: int) -> ListNode:
+    dummy=ListNode(0, head)
+    prev=dummy
+    while head:
+      if head.val!=val:
+        prev.next=head
+        prev=prev.next
+      head=head.next
+    prev.next=None
+    return dummy.next
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,169 @@
+*extend function adds the entire list wehereas append function adds only one element/value.
+1) QUICK SORT:-
+we need a pivot element.pivot is last element of the array.
+take the pivot and consider left array(which are less than pivot)
+right side(greater than pivot element).
+* complexity of function quicksorting is n.
+* complexity of fun quicksort depends on the depth of recursion tree.
+* in worst case scenario, depth goes till n, so O(n2).
+* best,avg--> depth -> logn
+* then O(n*log(n))
+ 
+**********************************************
+TIME COMPLEXITY OF QUICK SORT ALGORITHM IS:  
+BEST CASE: O(n*log(n)) #Dividing the array.
+WORST CASE: O(n2)
+AVERAGE CASE: (n*log(n))
+***********************************************
+2)MERGE SORT:
+works as divide and conquer.
+* divide the array until we get one element.
+and then sort the element and merge it.
+
+-----------------------------------------------------------------------------------------
+:::::>inversion
+
+def mergesort(l,inversion):
+    if len(l)>1:
+        mid=len(l)//2
+        left=l[:mid]
+        right=l[mid:]
+        li=mergesort(left,inversion)
+        ri=mergesort(right,inversion)
+        i=j=k=0
+        while i<len(left) and j<len(right):
+            if left[i] <=right[j]:
+                l[k]=left[i]
+                i+=1
+                k+=1
+            else:
+                l[k]=right[j]
+                j+=1
+                k+=1
+                inversion+=len(left)-1
+        while i<len(left):
+            l[k]=left[i]
+            i+=1
+            k+=1
+        while j<len(right):
+            l[k]=right[j]
+            j+=1
+            k+=1
+        return li+ri+inversion
+    return 0
+l=[2,3,5,6,1,4,7]
+print(mergesort(l,0))
+print(l)
+-----------------------------------------------------------------------------------------
+:::::>merge sort
+
+def mergesort(l):
+    if len(l)>1:
+        mid=len(l)//2
+        left=l[:mid]
+        right=l[mid:]
+        mergesort(left)
+        mergesort(right)
+        
+        i=j=k=0
+        while i<len(left) and j<len(right):
+            if left[i]<right[j]:
+                l[k]=left[i]
+                i+=1
+                k+=1
+            else:
+                l[k]=right[j]
+                j+=1
+                k+=1
+                
+        while i<len(left):
+            l[k]=left[i]
+            i+=1
+            k+=1
+        while j<len(right):
+            l[k]=right[j]
+            j+=1
+            k+=1
+            
+l=list(map(int,input().split()))
+mergesort(l)
+print(l)
+print(*l)            
+-----------------------------------------------------------------------------------------
+:::::>merge sort with inversions
+
+def mergesort(l,inversion):
+    if len(l)>1:
+        mid=len(l)//2
+        left=l[:mid]
+        right=l[mid:]
+        li=mergesort(left,inversion)
+        ri=mergesort(right,inversion)
+        i=j=k=0
+        while i<len(left) and j<len(right):
+            if left[i] <=right[j]:
+                l[k]=left[i]
+                i+=1
+                k+=1
+            else:
+                l[k]=right[j]
+                j+=1
+                k+=1
+                inversion+=len(left)-1
+        while i<len(left):
+            l[k]=left[i]
+            i+=1
+            k+=1
+        while j<len(right):
+            l[k]=right[j]
+            j+=1
+            k+=1
+        return li+ri+inversion
+    return 0
+l=[2,3,5,6,1,4,7]
+print(mergesort(l,0))
+print(l)
+-----------------------------------------------------------------------------------------
+:::::>quick sort
+
+def qsorting(l,start,end):
+    pi=l[end]
+    i=start-1
+    for j in range(start,end):
+        if l[j]<pi:
+            i=i+1
+            l[i],l[j]=l[j],l[i]
+    l[i+1],l[end]=l[end],l[i+1]
+    return i+1
+def quick(l,start,end):
+    if start<end:
+        pi=qsorting(l,start,end)
+        quick(l,start,9pi-1)
+        quick(l,pi+1,end)
+l=list(map(int,input().split()))
+quick(l,0,len(l)-1)
+print(l)
+-----------------------------------------------------------------------------------------
+:::::>sudoku
+
+def fun(l,target):
+    def backtrack(start,sum,subset):
+        if sum==target:
+            res.append(subset)
+            return
+        if sum>target or start==len(l):
+            return
+        subset.append(nums[start])
+        backtrack(start+1,curr_sum+nums[start],subset)
+        subset.pop()
+        backtrack(start+1,curr_Sum,subset)
+    res=[]
+    backtrack(0,0,[])
+    return res
+nums=[1,2,3,4,5]
+target_sum=9
+result=find_subsets(nums,target_sum)
+if result:
+    print(result)
+else:
+    print("no subsets with sum")

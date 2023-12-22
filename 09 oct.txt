@@ -1,0 +1,97 @@
+===>master's theorem
+*T(n)=aT(n/b)+f(n)-->time complexity
+aT(n/b)-->work done inside recursion
+f(n)--->work done outside recursion (greater part than inside recursion)
+a--->no. of recursions
+b--->factor by which your problem is divided into sub problem
+n->n/2&n/2,n/2->n/4 n/4 n/4 n/4,n/4->n/8 n/8 like 8 times and this process continues till we get single value.
+*binary search->log2n
+n/b^k=1
+n=b^k
+logbn=logbb^k===>(baseb)
+=klogbb
+k=logbn-->height of the tree.
+*a raiseto logb n=n raiseto logb a -> n raiseto logba->width/leafnodes
+==>logba raiseto logbn=logbn raiseto logba
+==>logbn.logba=logba.logbn
+case1:f(n)=O(n raiseto logba-g)->for somre (g>0) ->T(n)=O(nlogba) when inside work is more 
+case2:f(n)=O(n raiseto logba logkn)->for some (k>=0) ->T(n)=O(n raiseto logba log raiseto k+! n) when outside work is more
+case3:f(n)=1.omega (n raiseto+g)->for some (g>0) and 2.f(n/b)<=c ->for some c<1 ->T(n)=O(f(n))
+when inside and outside work is same then width*height.
+-> Greddy approach  
+* Mostly minmax problems are solved by greedy approach..
+* greedy knapsack problem.
+* types of knapsacks:
+1) greedy knapsack
+2) fractional knapsack
+3) 0/1 knapsack (either take the product or leave it)
+--------------------------------------------------------------------------------------------
+:::::>best time to buy and sell stock
+
+class Solution:
+  def maxProfit(self, prices: List[int]) -> int:
+    profit=0
+    buy=prices[0]
+    for i in range(len(prices)):
+        if prices[i]<buy:
+            buy=prices[i]
+        elif prices[i]-buy>profit:
+            profit=prices[i]-buy
+    return profit
+--------------------------------------------------------------------------------------------
+:::::>greedy knapsack
+
+capacity=int(input())
+weight = list(map(int,input().split()))
+profit = list(map(int,input().split()))
+perkg=[]
+for i in range(len(weight)):
+    perkg.append(profit[i]/weight[i])
+l=list(zip(weight,profit,perkg))
+l.sort(key=lambda x:x[2],reverse=True)
+print(*list(l))
+--------------------------------------------------------------------------------------------
+:::::>maximum running time of N computers
+
+class Solution:
+    def maxRunTime(self, n: int, batteries: List[int]) -> int:
+        batteries.sort()
+        total=sum(batteries)
+        while batteries[-1]>total//n:
+            total-=batteries[-1]
+            batteries.pop()
+            n-=1
+        return total//n
+solution=Solution()
+batteries=[4,8,6,10]
+n=3
+result=solution.maxRunTime(n,batteries)
+print(result)
+-------------------------------------------------------------------------------------------
+:::::>knapsack
+
+W=int(input())
+wt=list(map(int,input().split()))
+pr=list(map(int,input().split()))
+perkg=[]
+for i in range(len(wt)):
+    perkg.append(pr[i]/wt[i])
+l=list(zip(wt,pr,perkg))
+l.sort(key=lambda x:x[2],reverse=True)
+print(list(l))
+------------------------------------------------------------------------------------------
+:::::>knapsack (another method)
+
+W=int(input())
+wt=list(map(int,input().split()))
+pr=list(map(int,input().split()))
+c.sort(key=lambda x:x[1]/x[0],reverse=True)
+maxpr=0
+for weight,profit in l:
+    if weight<=W:
+       maxpr+=profit
+       W-=weight
+    else:
+        maxpr+=W*(profit/weight)
+        break
+print(maxpr)

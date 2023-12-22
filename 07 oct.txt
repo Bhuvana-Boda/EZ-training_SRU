@@ -1,0 +1,129 @@
+-> singly linked list:(pointers)
+
+for detecting cycle in the singly linked list.we use slow and fast pointers.
+slow will move 1 step.
+fast will move 2 step.
+
+
+left and right travels in different directions. whereas slow and fast travels in same direction..
+left:left will start at left index.
+right:right will start at right last index.
+
+2 5 8 10
+l      r
+
+while left<right:
+    if l[left]+l[right]==target:
+        found
+    elif sum>target:
+	left+=1
+   else:
+	right+=1
+-----------------------------------------------------------------------------------------
+:::::>binary search ceil
+
+def bs_ceil(l,target):
+    start=0
+    end=len(l)-1
+    floor=-1
+    while(start<end):
+        mid=((start+end)//2)
+        if l[mid]==target:
+            print(l[mid])
+            break
+        elif l[mid]<target:
+            floor=l[mid]
+            start=mid+1
+        else:
+            ceil=l[mid]
+            end=mid-1
+----------------------------------------------------------------------------------------
+:::::>binary search floor
+
+def bsfloor(l,target,si,li,floor):
+    if si<=li:
+        mid=(si+li)//2
+        if l[mid]==target:
+            return l[mid]
+        if l[mid]<target:
+            floor=l[mid]
+            return bsfloor(l,target,mid+1,li,floor)
+        else:
+            return bsfloor(l,target,si,mid-1,floor)
+    return floor
+l=[2,5,7,9,13]
+target=6
+print(bsfloor(l,target,0,len(l)-1,-1))
+----------------------------------------------------------------------------------------
+:::::>exact square root
+
+n=int(input())
+print(sqrt(n,0,n//2-1))
+def sqrt_binarysearch(number,epsilon=1e-6):
+    if num<0:
+        raise ValueError("cannot compute the square")
+    if num<1:
+        left,right=num,1
+    else:
+        left,right=0,num
+    while abs(left-right)>epsilon:
+        mid=(left+right)/2
+        mid_square=mid*mid
+        if mid_square<num:
+            left=mid
+        else:
+            right=mid
+    return (left+right)/2
+num=17
+result=sqrt_binary_search(num)
+print("The square root of {number}is approximately {result}")
+----------------------------------------------------------------------------------------
+:::::>perfect square root
+
+n=int(input())
+si=0
+li=n//2
+floor=-1
+while si<=li:
+    mid=(si+li)//2
+    sq=mid*mid
+    if sq==n:
+        floor=mid
+        break
+    elif sq<n:
+        floor=mid
+        si=mid+1
+    else:
+        li=mid-1
+print(floor)
+----------------------------------------------------------------------------------------
+:::::>square root of mid value using recursion
+
+def sqrt(n,si,li,floor):
+    if n<0:
+        return -1
+    if n==1:
+        return 1
+    if si<=li:
+        mid=(si+li)//2
+        sq=mid*mid
+        if sq==n:
+            return mid
+        elif sq<n:
+            floor=mid
+            return sqrt(n,mid+1,li,floor)
+        else:
+            return sqrt(n,si,mid-1,floor)
+    return floor
+n=int(input())
+print(sqrt(n,0,n//2,-1))
+---------------------------------------------------------------------------------------
+:::::>check whether if a string has a valid palindrome
+
+def haspalin(s):
+    def ispalin_xv(left,right):
+        while left>=0 and right<n and s[left]==s[right]:
+            left=1
+            right+=n
+        return s[left+1.right-1]
+____________________________________

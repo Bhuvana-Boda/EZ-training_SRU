@@ -1,0 +1,144 @@
+* Backtracking:going back and making the changes is called backtracking.
+----------------------------------------------------------------------------------------
+:::::>generate paranthesis
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        l=[]
+        res=[]
+        def backtrack(opencount=0,closecount=0):
+            if opencount==closecount==n:
+                res.append("".join(l))
+            if opencount<n:
+                l.append('(')
+                backtrack(opencount+1,closecount)
+                l.pop()
+            if closecount<opencount:
+                l.append(')')
+                backtrack(opencount,closecount+1)
+                l.pop()
+            return res
+        return backtrack()
+----------------------------------------------------------------------------------------
+:::::>(leetcode)N-queens
+
+class Solution:
+    def totalNQueens(self, n: int) -> int:
+        col=[]
+        ans=[]
+        posdiag=[]
+        negdiag=[]
+        board=[['.']*n for i in range(n)]
+        def backtrack(r):
+            if r==n:
+                l=["".join(i) for i in board]
+                ans.append(l)
+                return
+            for c in range(n):
+                if c in col or (r+c) in posdiag or (r-c) in negdiag:
+                    continue
+                board[r][c]='Q'
+                col.append(c)
+                posdiag.append(r+c)
+                negdiag.append(r-c)
+                backtrack(r+1)
+                board[r][c]='.'
+                col.remove(c)
+                posdiag.remove(r+c)
+                negdiag.remove(r-c)
+        backtrack(0)
+        return len(ans)
+----------------------------------------------------------------------------------------
+:::::>N-queens
+
+class solution:
+    def solvenqueens(self,n:int)->list[list[str]]:
+        ans=[]
+        col=[]
+        posdiag=[]
+        negdiag=[]
+        board=[['.']*n for i in range(n)]
+        def backtrack(r):
+            if r>=n:
+                l=["".join(i)for i in board]
+                ans.append(l)
+                return
+            for c in range(n):
+                if c in col or (r+c) in posdiagor (r-c)in negdiag:
+                        continue
+                        board[r][c]='Q'
+                        col.append(c)
+                        posdiag.append(r+c)
+                        negdiag.append(r-c)
+                        backtrack(r+1)
+                        board[r][c]="."
+                        col.remove(c)
+                        posdiag.remove(r+c)
+                        negdiag.remove(r-c)
+        backtrack(0)
+        return count
+----------------------------------------------------------------------------------------
+:::::>paranthesis list
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        l=[]
+        res=[]
+        def backtrack(opencount=0,closecount=0):
+            if opencount==closecount==n:
+                res.append("".join(l))
+            if opencount<n:
+                l.append('(')
+                backtrack(opencount+1,closecount)
+                l.pop()
+            if closecount<opencount:
+                l.append(')')
+                backtrack(opencount,closecount+1)
+                l.pop()
+            return res
+        return backtrack()
+----------------------------------------------------------------------------------------
+:::::>paranthesis string
+
+class solution:
+    def generateparanthesis(self,n:int)->list[str]:
+        res=[]
+        def backtrack(s,opencount=0,closecount=0):
+            if opencount==closecount==n:
+                res.append(s)
+            if opencount<n:
+                backtrack(s+'(',opencount+1,closecount)
+            if closecount<opencount:
+                backtrack(s+')',opencount+1,closecount)
+            return res
+        return backtrack(s="")
+----------------------------------------------------------------------------------------
+:::::>subset sum
+
+def check(arr,target,n):
+    if target==0:
+        return True
+    if n==0:
+        return False
+    if arr[n-1]>target:
+        return check(arr,target,n-1)
+    return check(arr,target-arr[n-1],n-1) or check(arr,target,n-1)
+arr=  [3,12,5,4,24,2]
+target=24
+ans=check(arr,target,len(arr))
+if ans==True:
+    print("solution found")
+else:
+    print("solution not found")
+----------------------------------------------------------------------------------------
+:::::>tower of hanoi(another method)
+
+def toh(n,sorce,aux,dest):
+    if n>0:
+        toh(n-1,sorce,dest,aux)
+        print(sorce,dest)
+        toh(n-1,aux,sorce,dest)
+n=3
+toh(n,'A','B','C')
+
+

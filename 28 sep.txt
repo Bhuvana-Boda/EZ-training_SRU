@@ -1,0 +1,329 @@
+c++ consists of all datatypes which are present in java except string,boolean,byte.
+*short ->%hx (or) %hs
+*long int->%l
+*long long int->%lld
+*double ->%lf
+*float ->%f
+*int ->%d (or) %i
+*string ->%s
+*char ->%c
+
+*age->short
+*pincode->int
+*mobile->long int
+*aadhar->long int
+*debit->long long int (or)long int
+
+*space complexity =auxillary space+input values of variables.
+*time complexity depends on three asymptotic notations:
+1.big(O) notation --> worst case ->upper boundary value
+2.big(theta) notation --> average case -> combination of lower and upper value
+3.big(omega) notaion --> best case ->lower boundary value
+
+O(n) -> for(i=0;i<n;i++)  (or)  for(i=n;i>=0;i--)
+        {
+             statements;
+        }
+O(n^2) -> for(i=0;i<n;i++)
+        {
+          for(j=0;j<n;j++)
+                  (or)
+                  j<=i
+            {
+                statements;
+            }
+         } 
+
+----->     O(root n)
+
+for(i=1;i*i<n;i++)
+ {
+   statements;
+ }
+
+    (OR)
+p=0
+for(i=0;p<n;i++)
+{
+   p=p+i;
+}
+
+------>        O(n)
+
+for(i=0;i<n;i++)
+{
+statements;
+}
+      (OR)
+for(i=n;i>=0;i++)
+{
+statements;
+}
+       (OR)
+ for(i=1;i<n;i=i+2)
+{
+statements;
+}
+  
+------>    O(n^2)
+
+for(i=0;i<n;i++)
+{
+  for(j=0;j<n;j++)
+   {
+     statements;
+   }
+}
+
+---->   O(log(n))   
+
+for(i=1;i<n;i=i*2)
+{
+   statements;
+}
+      (OR)
+for(i=1;i<n;i=i/20)
+{
+    statements;
+}
+---->increment and drecrement :
+
+pre --> 1.memory , 2.display
+post -->1.display , 2.memory
+square represents memory (upwards)
+circle represents display (downwards)
+if starting of a operation is preincrement or predecrement then back tracking applies
+---------------------------------------------------------------------
+:::::>datatypes program
+
+#include<stdio.h>
+main()
+{
+    long long int mobile=8374060345;
+	printf("mobile no: %lld\n",mobile);
+ 	
+    long long int aadhar=272001469725;
+    printf("aadhar :%lld\n",aadhar);
+    
+    int pincode=506370;
+    printf("pincode :%i\n",pincode);
+    
+    short age=19;
+    printf("age :%hx",age);
+}
+---------------------------------------------------------------------
+:::::>incerement and decrement
+
+main()
+{
+	int a=10;
+	int b=++a + a++ - --a + a++ - a++;
+	printf("a=%d \n",a);
+	printf("b=%d \n",b);
+}
+---------------------------------------------------------------------
+:::::>lemon program
+
+#include<stdio.h>
+main()
+{
+	int i,req,actual;
+	printf("enter req no. of lemons:");
+	scanf("%d",&req);
+	printf("enter actual no. of lemons:");
+	scanf("%d",&actual);
+	(actual>req)? printf("extra lemons"):printf("we need :%d lemons",req-actual);
+	
+}
+---------------------------------------------------------------------
+:::::>matrix
+
+#include<stdio.h>
+main()
+{
+	int mat[4][4],r,c,i,j,count=0;
+	printf("enter no. of rows:");
+	scanf("%d",&r);
+	printf("enter no. of columns:");
+	scanf("%d",&c);
+	for(i=0;i<r;i++)
+	{
+		for(j=0;j<c;j++)
+		{
+			printf("enter element [%d][%d]:",i,j);
+			scanf("%d",&mat[i][j]);
+		}
+	}
+	for(i=0;i<r;i++)
+	{
+		for(j=0;j<c;j++)
+		{
+			printf("%d ",mat[i][j]);
+			if(j==r-1)
+			{
+				printf("\n");
+		    }
+		}
+	}
+	for(i=0;i<r;i++)
+	{
+	  for(j=0;j<r;j++)
+    	{
+	       if((mat[i][j] && mat[i+1][j] && mat[i+2][j] && mat[i+3][j])==1)
+	        {
+	        	count++;
+	        	printf("1's left diagnol -> %d",count);
+         	}
+         }
+    }
+	return 0;
+}
+------------------------------------------------------------------------------
+:::::>perfect square
+
+#include<stdio.h>
+#include<math.h>
+main()
+{
+	int i,n1,n2;
+	printf("enter 1st no.");
+	scanf("%d",&n1);
+	printf("enter 2nd no.");
+	scanf("%d",&n2);
+	printf("perfect squares are:");
+	for(i=n1;i<=n2;i++)
+	{
+		double sqr=sqrt(i);
+		if(sqr-floor(sqr)==0)
+		  printf("%d \n",i);
+	}
+	return 0;
+}
+-----------------------------------------------------------------------------
+:::::>perfect squares in python
+
+def perfectSquares(l, r):
+ 
+    # For every element from the range
+    for i in range(l, r + 1):
+ 
+        # If current element is
+        # a perfect square
+        if (i**(.5) == int(i**(.5))):
+            print(i, end=" ")
+-----------------------------------------------------------------------------
+:::::>string reverse in python
+
+s=input()
+s1=""
+for c in s:
+    if((ord(c)>=65) and (ord(c)<=90)) or (ord(c)>=97 and ord(c)<=122):
+      s1+=c
+s2=""
+s2+=s1[::+1]
+res=""
+k=-1
+for i in range(0,len(s)):
+    if((ord(s[i])>=65) and (ord(s[i])<=90)) or (ord(s[i])>=97 and ord(s[i])<=122):
+      k+=1
+      res+=s2[k]
+    else:
+        res+s[i]
+print(res)
+------------------------------------------------------------------------------
+:::::>perfect squares (another logic)
+
+def perfectSquares(l, r):
+ 
+    # For every element from the range
+    for i in range(l, r + 1):
+ 
+        # If current element is
+        # a perfect square
+        if (i**(.5) == int(i**(.5))):
+            print(i, end=" ")
+ -----------------------------------------------------------------------------
+:::::>string reverse without changing the position ofn special symbols
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+// Returns true if x is an alphabetic character, false
+// otherwise
+bool isAlphabet(char x)
+{
+    return ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z'));
+}
+ 
+void reverse(char str[])
+{
+    // Initialize left and right pointers
+    int r = strlen(str) - 1, l = 0;
+ 
+    // Traverse string from both ends until 'l' and 'r'
+    while (l < r) {
+        // Ignore special characters
+        if (!isAlphabet(str[l]))
+            l++;
+        else if (!isAlphabet(str[r]))
+            r--;
+        // Both str[l] and str[r] are not special
+        else {
+            char temp = str[l];
+            str[l] = str[r];
+            str[r] = temp;
+            // swap(str[l], str[r]);
+            l++;
+             r--;
+        }
+    }
+}
+ 
+int main()
+{
+    char str[] = "a!!!b.c.d,e'f,ghi";
+    printf("Input string: %s\n", str);
+    reverse(str);
+    printf("Output string: %s\n", str);
+    return 0;
+}
+-----------------------------------------------------------------------
+:::::>union
+
+union orange 
+{
+	int a[400];
+	double b[1000];
+	char c[1000];
+}o1,o2;
+main()
+{
+	printf("size of orange=%d",sizeof(o1));
+}
+/* 
+777%8=7 remainder
+8=1+7
+777+7==784
+which is having high value that no. should be multiplied with respective bytes
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

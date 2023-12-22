@@ -1,0 +1,55 @@
+* the keys should be properly accumulated in hash table which is done bye hash function.
+*there are two types of data structures,they are:
+1.hashset->set based implementation
+2.hash map->key:value(dict) based implementation
+--->hashset
+*choosing the key is very important so we choose mostly the greater/larger prime number
+*to insert element,we use add() function.
+*set gives less time complexity than list.
+*when index is not the concern we use hashset to store value.
+--->hashmap
+*uses hashing technique to store the elements.
+------------------------------------------------------------------------------------------
+:::::>letter combinations of phone number
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        d={'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}
+        res=[]
+        def backtrack(i,curstr):
+            if len(curstr)==len(digits):
+                res.append(curstr)
+                return
+            for c in d[digits[i]]:
+                backtrack(i+1,curstr+c)
+        if digits:
+            backtrack(0,'')
+        return res
+------------------------------------------------------------------------------------------
+:::::>oopc
+
+class cse:
+    def _init_(self,a):
+        print("sanjana",a)
+    def fun(s):
+        print("meghana")
+o=cse(1)
+o._init_(5)
+o.fun()
+------------------------------------------------------------------------------------------
+:::::>valid sudoku
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row=collections.defaultdict(set)
+        col=collections.defaultdict(set)
+        box=collections.defaultdict(set)
+        for i in range(9):
+            for j in range(9):
+                if board[i][j]!='.':
+                    if board[i][j] in row[i] or board[i][j] in col[j]or board[i][j] in box[(i//3,j//3)]:
+                        return False
+                    row[i].add(board[i][j])
+                    col[j].add(board[i][j])
+                    box[(i//3,j//3)].add(board[i][j])
+        return True

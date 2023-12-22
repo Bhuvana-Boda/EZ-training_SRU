@@ -1,0 +1,123 @@
+****bytes****
+       c     java   python
+int-  4       4       4
+char-1        2       2
+float-4       4       4
+double-8      8       -
+long int-8     8      8(or)4
+short-2       2       2
+boolean--     1bit   1bit(true or false) 
+byte--        1       -
+void
+string
+
+
+signed char-> -128 to 128
+unsigned char-> 0 to 255
+
+signed int-> -217483648 to 217483647
+unsigned int-> 0 to 4294967295
+  
+short -> -32768 to 32767
+
+python 
+*RAM consists of stack and heap
+*ordered data are stored in stack 
+*unordered data are stored in heap
+*don't need to call constructor explicitly
+Q->diff btw method overloading and method overriding? 
+Q->where are all topics are used in real time?
+magical prime? 17 is prime and reverse of 17 is 71 .then 71 is prime no. therefore 17 and 71 are magical prime no's.
+neon number program?0^2==0-> neon,1^2==0 -> neon,2^2==4 ->not neon,4^2==16 ->1+6->7 ->not neon.
+
+homework 
+find out the real time examples for all oopc topics
+magic number program
+how can we find space complexity in union
+
+:::::>introduction program
+
+class rakhi:
+    def exrakhi(bbroy,a):
+        print("hlo baby",a)
+    def mrsrakhi(bbroy,b,c):
+        print("am on the way baby",b,c)
+child=rakhi()
+child.exrakhi(10000)
+child.mrsrakhi(25000,'take care baby')
+-----------------------------------------------------------------------------------
+:::::>constructor
+
+class rakhi:
+    def __init__(banglore,banglore1=None):
+        print("default constructor")
+    def __init__(banglore1,banglore2):
+        print("banana",banglore2)
+    def __bank__(india):
+        print("1")
+    def hlo(US):
+        print("2")
+    def hii(UK):
+        print("3")
+s=rakhi(200)
+s.hlo()
+s.hii()
+s.__bank__()
+s.__init__()
+----------------------------------------------------------------------------------
+:::::>inheritance
+
+class rakhi:
+    def gold(wgl):
+        print("price 5L")
+    def car(wgl):
+        print("price 3L")
+class baby1(rakhi):
+    def bank(wgl):
+        print("deposited 2L")
+class baby2(rakhi):
+    def jewels(wgl):
+        print("price 10L")
+b1=baby1()
+b1.bank()
+b1.gold()
+b1.car()
+b2=baby2()
+b2.car()
+b2.jewels()
+-------------------------------------------------------------------------------------
+:::::>neon number
+
+num = int(input("Enter a number \n"))
+s =num*num
+sum= 0
+while s>0:
+    sum =sum + s%10
+    s = s//10
+if (num == sum):
+    print("Neon Number \n")
+else:
+    print("Not a Neon Number \n")
+------------------------------------------------------------------------------------
+:::::>struct
+
+struct apple
+{
+	int a[103];
+	double b[3000];
+	char c[1999];
+}s1,s2,s3;
+main()
+{
+	printf("size of apple=%d",sizeof(s1));
+}
+/*
+103*4=412+4bytes=416
+1999%8=1 remainder->1999+1=2000
+3000*8 bytes->240000%8->0 remainder
+---->416+2000+240000==26416
+*/
+
+
+
+
